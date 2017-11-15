@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Chatter3.Models.Chat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div id="response"></div>
+
+<button id="getChats" class="btn btn-primary">Get Chats</button>
+
+@section Scripts {
+    <script>
+        //alert("Hello world!");
+        
+
+        //JSON . . . JavaScript object
+        var jsonTest = { "ID": 1, "userID": 1, "Message": "Hello World" };
+        //now some jQuery
+        $("#response").text(jsonTest.Message);
+
+    </script>
+    }

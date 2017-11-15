@@ -174,9 +174,7 @@
           <Property Name="ChatMessage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AspNetUser" Relationship="Chatter3Model.FK_Chat_AspNetUsers" FromRole="Chat" ToRole="AspNetUser" />
-          <NavigationProperty Name="Chat1" Relationship="Chatter3Model.FK_Chat_Chat" FromRole="Chat" ToRole="Chat1" />
-          <NavigationProperty Name="Chat2" Relationship="Chatter3Model.FK_Chat_Chat" FromRole="Chat1" ToRole="Chat" />
-        </EntityType>
+          </EntityType>
         <EntityContainer Name="Chatter3Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chats" EntityType="Self.Chat" />
           <EntitySet Name="AspNetRoles" EntityType="Chatter3Model.AspNetRole" />
@@ -198,10 +196,6 @@
           <AssociationSet Name="FK_Chat_AspNetUsers" Association="Chatter3Model.FK_Chat_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Chat" EntitySet="Chats" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Chat_Chat" Association="Chatter3Model.FK_Chat_Chat">
-            <End Role="Chat" EntitySet="Chats" />
-            <End Role="Chat1" EntitySet="Chats" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -295,18 +289,6 @@
             </Principal>
             <Dependent Role="Chat">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Chat_Chat">
-          <End Type="Chatter3Model.Chat" Role="Chat" Multiplicity="1" />
-          <End Type="Chatter3Model.Chat" Role="Chat1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Chat">
-              <PropertyRef Name="ChatId" />
-            </Principal>
-            <Dependent Role="Chat1">
-              <PropertyRef Name="ChatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

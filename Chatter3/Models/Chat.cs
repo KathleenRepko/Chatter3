@@ -20,7 +20,5 @@ namespace Chatter3.Models
         public System.DateTime DateTimeStamp { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Chat Chat1 { get; set; }
-        public virtual Chat Chat2 { get; set; }
     }
 }
