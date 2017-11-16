@@ -21,6 +21,14 @@ namespace Chatter3.Controllers
             return View(chats.ToList());
         }
 
+        public JsonResult TestJson()
+        {
+            string jsonTest = "{\"firstName\":\"Bob\",\"lastName\":\"Sauce\",\"children\":[{\"firstName\":\"Barbie\",\"age\":19},{\"firstName\":\"Ron\",\"age\":null}]}";
+
+                return Json(jsonTest, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: Chats/Details/5
         public ActionResult Details(int? id)
         {
