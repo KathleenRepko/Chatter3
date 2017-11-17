@@ -14,6 +14,7 @@ namespace Chatter3.Controllers
     public class ChatsController : Controller
     {
         private Chatter3Entities db = new Chatter3Entities();
+        private object select;
 
         // GET: Chats
         public ActionResult Index()
@@ -24,6 +25,40 @@ namespace Chatter3.Controllers
 
         public JsonResult TestJson()
         {
+            //SELECT * FROM Chat
+
+            var chats = from Chats in db.Chats
+                        select new
+                        {
+                            ChatId = Chats.ChatId,
+                            UserId = Chats.UserId,
+                            ChatMessage = Chats.ChatMessage,
+                            DateTimeStamp = Chats.DateTimeStamp
+                        };
+
+            //ChatsController.OrderByDescending(Chats.DateTimeStamp);
+
+            //select new
+            //{
+            //    Chats.Message,
+            //    Chats.AspNetUser.UserName
+            //                OrderByDescending(DateTimeStamp)
+            //};
+            //var output = JsonConvert.SerializeObject(ChatsController.ToList());
+
+            //return Json(output, JsonRequestBehavior.AllowGet);
+            //var chats = from Chats in db.Chats
+            //            orderby
+            //              Chats.DateTimeStamp descending
+            //            select new
+            //            {
+            //                Chats.AspNetUser.UserName,
+            //                Chats.Message
+            //            };
+
+            //var output = JsonConvert.SerializeObject(chats.ToList());
+            //return Json(output, JsonRequestBehavior.AllowGet);
+
             string jsonTest = "{\"firstName\":\"Bob\",\"lastName\":\"Sauce\",\"children\":[{\"firstName\":\"Barbie\",\"age\":19},{\"firstName\":\"Ron\",\"age\":null}]}";
 
                 return Json(jsonTest, JsonRequestBehavior.AllowGet);
